@@ -1,0 +1,20 @@
+@import 'colors';
+
+.card-images {
+
+  border-radius: .5rem;
+  background-color: $dark-sea-green;
+  img {
+    border: solid;
+    max-height: 15rem;
+    max-width: 12rem;
+    margin-left: 2rem;
+
+  }
+
+  p {
+    text-align: left;
+    padding: .2rem;
+    margin-right: 3rem;
+  }
+}
