@@ -1,0 +1,16 @@
+@import 'colors';
+
+.card-images {
+
+  img {
+    border: solid;
+    max-height: 20rem;
+    max-width: 12rem;
+  }
+
+  p {
+    text-align: left;
+    padding: .2rem;
+    margin: 1rem;
+  }
+}

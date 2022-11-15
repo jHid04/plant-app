@@ -1,13 +1,17 @@
-<h1>Welcome to PlantApp</h1>
+<h1>Welcome to the PlantApp</h1>
 
 <div>
   <% @plants.each do |plant|%>
-  <div class="callout">
-      <img src="<%= plant.img %>">
-      <li>Common name: <%=  plant.common_name%></li>
-      <li>Scientific name: <%=  plant.scientific_name%></li>
-      <li>Family: <%=  plant.family%></li>
-      <li>Genus: <%=  plant.genus%></li>
+  <div class="callout row align-middle card-images">
+    <div>
+        <img src="<%= plant.img %>">
+    </div>
+      <div>
+          <p>Common name: <%=  plant.common_name%></p>
+          <p>Scientific name: <%=  plant.scientific_name%></p>
+          <p>Family: <%=  plant.family%></p>
+          <p>Genus: <%=  plant.genus%></p>
+      </div>
   </div>
-  <% end %>
+    <% end %>
 </div>
