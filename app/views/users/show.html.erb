@@ -1,0 +1,21 @@
+<div class="grid-x grid-margin-x">
+  <div class="cell small-4">
+    <p>Name: <%= @user.first_name %> <%= @user.last_name %></p>
+    <p>Member since: <%= @user.created_at.strftime('%b %Y') %></p>
+      <h3>About Me</h3>
+      <li><%= @user.about %></li>
+  </div>
+  <div class="cell small-4 large-offset-2 plant-info">
+    <h3><%= @user.username%>'s Plant List</h3>
+      <% @user_plants.each do |plant|%>
+        <div>
+          <div> 
+              <p><%=  plant.common_name%></p>
+          </div>
+          <div>
+              <img src="<%= plant.img %>">
+          </div>
+      </div>
+      <% end%>  
+  </div>
+</div>
