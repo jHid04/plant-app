@@ -1,7 +1,17 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
+import { BrowserRouter, Route, Switch } from 'react-router-dom'
+import UserShowContainer from './UserShowContainer'
 
-export const App = (props) => {
-  return (<h1>Make It So React</h1>)
+
+const App = (props) => {
+  return (
+    <BrowserRouter>
+      <Switch>
+        <Route exact path="/users/:id" component={UserShowContainer}>
+        </Route>
+      </Switch>
+    </BrowserRouter>
+  )
 }
 
 export default App
