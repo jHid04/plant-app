@@ -10,10 +10,16 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_11_14_162348) do
+ActiveRecord::Schema.define(version: 2022_11_17_191112) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "categories", force: :cascade do |t|
+    t.string "title", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
 
   create_table "plants", force: :cascade do |t|
     t.string "scientific_name", null: false
@@ -22,8 +28,10 @@ ActiveRecord::Schema.define(version: 2022_11_14_162348) do
     t.string "genus"
     t.string "common_name"
     t.bigint "user_id", null: false
+    t.bigint "category_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["category_id"], name: "index_plants_on_category_id"
     t.index ["user_id"], name: "index_plants_on_user_id"
   end
 

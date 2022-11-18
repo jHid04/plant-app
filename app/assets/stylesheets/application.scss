@@ -17,22 +17,3 @@
  */
 
 @import 'colors';
-
-body {
-  background-color: $ash-gray;
-}
-
-.top-bar {
-  background-color: $dark-sea-green;
-
-  a {
-    color: white;
-  }
-}
-
-.top-bar-section {
-  background-color: $dark-sea-green;
-  li {
-    background-color: $dark-sea-green;
-  }
-}

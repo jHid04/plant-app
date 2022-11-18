@@ -7,6 +7,7 @@ class CreatePlants < ActiveRecord::Migration[5.2]
       t.string :genus 
       t.string :common_name 
       t.belongs_to :user, null: false
+      t.belongs_to :category, null: false
 
       t.timestamps
     end
