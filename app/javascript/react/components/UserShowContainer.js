@@ -5,7 +5,6 @@ const UserShowContainer = (props) => {
 
   const [user, setUser] = useState({})
   const [plants, setPlants] = useState([])
-
   const [newPlantSubmission, setNewPlantSubmission] = useState({
     scientific_name: "",
     img: "",
@@ -22,8 +21,8 @@ const UserShowContainer = (props) => {
         throw (error)
       } else {
         const parsedUser = await response.json()
-        setUser(parsedUser)
-        setPlants(parsedUser.plants)
+        setUser(parsedUser.user)
+        setPlants(parsedUser.user.plants)
       }
       
       
@@ -53,7 +52,7 @@ const UserShowContainer = (props) => {
         throw (error)
       } else {
         const responseBody = await response.json()
-        setPlants([...plants, responseBody])
+        setPlants([...plants, responseBody.plant])
         setNewPlantSubmission({
           scientific_name: "",
           img: "",

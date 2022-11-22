@@ -3,7 +3,6 @@ class Api::V1::PlantsController < ApiController
     plant = Plant.new(plant_params)
     plant.category = Category.where(title: params[:category])[0]
     plant.user = current_user
-    
     if plant.save
       render json: plant
     else 
