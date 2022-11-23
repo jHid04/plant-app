@@ -1,0 +1,14 @@
+
+<div>
+  <div class="card-images grid-x grid-margin-x callout">
+    <div class="cell small-4">
+        <img src="<%= @plant.img %>">
+    </div>
+    <div class="cell auto">
+          <p>Common name: <%=  @plant.common_name%></p>
+          <p>Scientific name: <%=  @plant.scientific_name%></p>
+          <p>Family: <%=  @plant.family%></p>
+          <p>Added by: <%=  @plant.user.username%></p>
+    </div>
+  </div>
+</div>

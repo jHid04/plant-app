@@ -68,8 +68,7 @@ const UserShowContainer = (props) => {
   return (
     <div className="grid-x grid-margin-x">
       <div className="cell small-4">
-        <p>Name: {user.first_name}{user.last_name}</p>
-        <p>Member since:</p>
+        <p>Name: {user.first_name} {user.last_name}</p>
           <h3>About Me</h3>
           <li>{user.about}</li>
       </div>

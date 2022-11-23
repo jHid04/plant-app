@@ -4,7 +4,6 @@ class CreatePlants < ActiveRecord::Migration[5.2]
       t.string :scientific_name , null: false
       t.string :img
       t.string :family
-      t.string :genus 
       t.string :common_name 
       t.belongs_to :user, null: false
       t.belongs_to :category, null: false
