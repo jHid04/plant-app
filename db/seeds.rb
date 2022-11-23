@@ -15,6 +15,6 @@ category_2 = Category.create(title: "Succulents & Cacti")
 category_3 = Category.create(title: "Flowering Plants")
 category_4 = Category.create(title: "Herbs")
 
-plant_1 = Plant.create(common_name: "Alocasia zebrina", scientific_name: "Alocasia zebrina", family: "Araceae", genus: "Alocasia", img: "https://inaturalist-open-data.s3.amazonaws.com/photos/54045964/original.jpg", user: user_1, category: category_1)
-plant_2 = Plant.create(common_name: "Adanson's Monstera", scientific_name: "Monstera adansonii", family: "Araceae", genus: "Monstera", img: "https://inaturalist-open-data.s3.amazonaws.com/photos/21333744/original.jpg", user: user_1, category: category_1)
+plant_1 = Plant.create(common_name: "Alocasia zebrina", scientific_name: "Alocasia zebrina", family: "Araceae", img: "https://inaturalist-open-data.s3.amazonaws.com/photos/54045964/original.jpg", user: user_1, category: category_1)
+plant_2 = Plant.create(common_name: "Adanson's Monstera", scientific_name: "Monstera adansonii", family: "Araceae", img: "https://inaturalist-open-data.s3.amazonaws.com/photos/21333744/original.jpg", user: user_1, category: category_1)
 

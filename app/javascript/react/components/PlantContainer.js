@@ -20,12 +20,12 @@ const PlantContainer = ({ plants, postUpdate, setNewPlantSubmission, newPlantSub
 
   return (
     <Fragment>
+      <div>{plantsList}</div>
       <NewPlantForm 
         postUpdate={postUpdate}
         newPlantSubmission={newPlantSubmission}
         setNewPlantSubmission={setNewPlantSubmission}
         />
-        <div>{plantsList}</div>
     </Fragment>
   )
 }
