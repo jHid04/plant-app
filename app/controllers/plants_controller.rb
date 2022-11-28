@@ -5,6 +5,5 @@ class PlantsController < ApplicationController
 
   def show 
     @plant = Plant.find(params[:id])
-    binding.pry
   end
 end
