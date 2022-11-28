@@ -1,8 +1,13 @@
 <h3>Welcome to the PlantApp</h3>
 
+<%- if !current_user -%>
+  <%= link_to 'Add a plant', new_user_session_path %>
+<%- else -%>
+  <%= link_to 'Add a plant', "/users/#{current_user.id}" %>
+<% end%>
 <div>
   <% @plants.each do |plant|%>
-    <%= link_to plant, class: "card-images grid-x grid-margin-x callout" do%> 
+    <%= link_to plant, class: "card-images grid-x grid-margin-x callout" do%>
       <div class="cell small-4">
           <img src="<%= plant.img %>">
       </div>
@@ -10,7 +15,6 @@
             <p>Common name: <%=  plant.common_name%></p>
             <p>Scientific name: <%=  plant.scientific_name%></p>
             <p>Family: <%=  plant.family%></p>
-            <p>Genus: <%=  plant.genus%></p>
       </div>
     <% end %>
   <% end %>

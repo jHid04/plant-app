@@ -25,7 +25,6 @@ ActiveRecord::Schema.define(version: 2022_11_17_191112) do
     t.string "scientific_name", null: false
     t.string "img"
     t.string "family"
-    t.string "genus"
     t.string "common_name"
     t.bigint "user_id", null: false
     t.bigint "category_id", null: false
