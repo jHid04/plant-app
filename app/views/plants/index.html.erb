@@ -9,12 +9,12 @@
   <% @plants.each do |plant|%>
     <%= link_to plant, class: "card-images grid-x grid-margin-x callout" do%>
       <div class="cell small-4">
-          <img src="<%= plant.img %>">
+        <img src="<%= plant.img %>">
       </div>
       <div class="cell auto">
-            <p>Common name: <%=  plant.common_name%></p>
-            <p>Scientific name: <%=  plant.scientific_name%></p>
-            <p>Family: <%=  plant.family%></p>
+        <p>Name: <%=  plant.name%></p>
+        <p>Family: <%=  plant.family%></p>
+        <p>By <%= plant.user.username %></p>
       </div>
     <% end %>
   <% end %>

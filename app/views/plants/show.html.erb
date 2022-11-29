@@ -5,10 +5,10 @@
         <img src="<%= @plant.img %>">
     </div>
     <div class="cell auto">
-          <p>Common name: <%=  @plant.common_name%></p>
-          <p>Scientific name: <%=  @plant.scientific_name%></p>
+          <p>Category: <%=  @plant.category.title%></p>
+          <p>Name: <%=  @plant.name%></p>
           <p>Family: <%=  @plant.family%></p>
-          <p>Added by: <%=  @plant.user.username%></p>
+          <p>By <%= link_to @plant.user.username, "/users/#{@plant.user.id}" %></p>
     </div>
   </div>
 </div>

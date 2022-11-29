@@ -1,5 +1,6 @@
 class Plant < ApplicationRecord
-  validates :scientific_name, presence: true
+  validates :name, presence: true
+  mount_uploader :img, PlantPhotoUploader
   belongs_to :user
   belongs_to :category
 end

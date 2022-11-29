@@ -1,10 +1,12 @@
 import React from "react";
 
-const PlantTile = ({ scientific_name, img, family, category }) => {
+const PlantTile = ({ name, img, family, category, id }) => {
   return (
-    <div>
+    <div className="callout">
       <div> 
-        Name: {scientific_name} Family: {family} Category: {category}
+        <p>Category: {category}</p> 
+        <p>Name: {name}</p> 
+        <p>Family: {family}</p>
       </div>
       <div>
         <img src={img}/>
