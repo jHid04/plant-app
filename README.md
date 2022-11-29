@@ -24,7 +24,6 @@ All functionality for PW reset, account editing, and account creation is handled
 
 ## Credits
 - @jHid04
-
 ### Project Mentors
 - @nwalberts
 - @dovakeen118
