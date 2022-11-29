@@ -1,5 +1,7 @@
 import React, { useEffect, useState } from "react";
 import PlantContainer from "./PlantContainer";
+import ErrorList from "./ErrorList";
+import _ from 'lodash'
 
 const UserShowContainer = (props) => {
 
@@ -35,40 +37,56 @@ const UserShowContainer = (props) => {
     fetchUser()
   }, [])
 
+  const [errors, setErrors] = useState({})
+
+  const validSubmission = () => {
+    let submitErrors = {}
+    if (newPlantSubmission.name.trim() === "") {
+      submitErrors = {
+        ...submitErrors,
+        name: "is blank"
+      }
+    }
+    setErrors(submitErrors)
+    return _.isEmpty(submitErrors)
+  }
 
   const handleSubmission = async (event) => {
     event.preventDefault()
-    let body = new FormData()
-    body.append("name", newPlantSubmission.name)
-    body.append("img", newPlantSubmission.img)
-    body.append("family", newPlantSubmission.family)
-    body.append("category", newPlantSubmission.category)
-    
-    try {
-      const response = await fetch(`/api/v1/plants`, {
-        method: "POST",
-        credentials: "same-origin",
-        body: body
-      })
-      if (!response.ok) {
-        const errorMessage = `${response.status} (${response.statusText})`
-        throw new Error(errorMessage)
+    if (validSubmission()) {
+      let body = new FormData()
+      body.append("name", newPlantSubmission.name)
+      body.append("img", newPlantSubmission.img)
+      body.append("family", newPlantSubmission.family)
+      body.append("category", newPlantSubmission.category)
+      
+      try {
+        const response = await fetch(`/api/v1/plants`, {
+          method: "POST",
+          credentials: "same-origin",
+          body: body
+        })
+        if (!response.ok) {
+          const errorMessage = `${response.status} (${response.statusText})`
+          throw new Error(errorMessage)
+        }
+        const newPlant = await response.json()
+        setPlants([
+          ...plants,
+          newPlant.plant
+        ])
+        setNewPlantSubmission({
+          name: "",
+          img: "",
+          family: "",
+          category: ""
+        })
+        setErrors({})
+      } catch (error) {
+        console.error(`Error in Fetch: ${error.message}`)
       }
-      const newPlant = await response.json()
-      setPlants([
-        ...plants,
-        newPlant.plant
-      ])
-      setNewPlantSubmission({
-        name: "",
-        img: "",
-        family: "",
-        category: ""
-      })
-    } catch (error) {
-      console.error(`Error in Fetch: ${error.message}`)
     }
-  }
+    }
 
   return (
     <div className="grid-x grid-margin-x">
@@ -79,6 +97,7 @@ const UserShowContainer = (props) => {
       </div>
       <div className="cell small-4 large-offset-2 plant-info">
         <PlantContainer
+          errors={errors}
           newPlantSubmission={newPlantSubmission}
           setNewPlantSubmission={setNewPlantSubmission}
           plants={plants}
