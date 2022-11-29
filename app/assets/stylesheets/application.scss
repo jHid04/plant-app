@@ -17,3 +17,24 @@
  */
 
 @import 'colors';
+
+body {
+  a {
+    color: $dark-slate-gray;
+  }
+}
+.top-bar {
+  background-color: $hookers-green;
+
+  a {
+    color: white;
+    background-color: $hookers-green;
+  }
+}
+
+.top-bar-section {
+  background-color: $hookers-green;
+  li {
+    background-color: $hookers-green;
+  }
+}
