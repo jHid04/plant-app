@@ -1,8 +1,8 @@
 import React, { Fragment, useState, useEffect } from "react";
 import PlantTile from "./PlantTile";
 import NewPlantForm from "./NewPlantForm";
-
-const PlantContainer = ({ plants, setNewPlantSubmission, newPlantSubmission, handleSubmission }) => {
+import ErrorList from "./ErrorList";
+const PlantContainer = ({ plants, setNewPlantSubmission, newPlantSubmission, handleSubmission, errors }) => {
 
   const plantsList = plants.map((plant) => {
     return (
@@ -21,7 +21,8 @@ const PlantContainer = ({ plants, setNewPlantSubmission, newPlantSubmission, han
   return (
     <Fragment>
       <div>{plantsList}</div>
-      <NewPlantForm 
+    <ErrorList errors={errors} />
+      <NewPlantForm
         handleSubmission={handleSubmission}
         newPlantSubmission={newPlantSubmission}
         setNewPlantSubmission={setNewPlantSubmission}
