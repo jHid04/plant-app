@@ -1,8 +1,10 @@
 import React, { useEffect, useState } from "react";
+import Dropzone from "react-dropzone";
 
-const NewPlantForm = ({ postUpdate, setNewPlantSubmission, newPlantSubmission }) => {
+const NewPlantForm = ({ setNewPlantSubmission, newPlantSubmission, handleSubmission }) => {
 
   const categories = ["","Foliage Plant", "Succulents & Cacti", "Flowering Plants" , "Herbs"]
+  const [files, setFiles] = useState([])
 
   const categoriesList = categories.map((category) => {
     return (
@@ -19,9 +21,18 @@ const NewPlantForm = ({ postUpdate, setNewPlantSubmission, newPlantSubmission })
     })
   }
 
-  const handleSubmission = async (event) => {
-    event.preventDefault()
-    postUpdate(newPlantSubmission)
+  const handleFileUpload = (acceptedFiles) => {
+    setNewPlantSubmission({
+      ...newPlantSubmission,
+      img: acceptedFiles[0]
+    })
+
+    setFiles([
+      ...files,
+      <li key={acceptedFiles[0].path}>
+      {acceptedFiles[0].path} - {acceptedFiles[0].size} bytes
+    </li>
+    ])
   }
 
   return (
@@ -38,23 +49,28 @@ const NewPlantForm = ({ postUpdate, setNewPlantSubmission, newPlantSubmission })
       <label>
         Name:
         <input 
-          name="scientific_name"
-          id="scientific_name"
+          name="name"
+          id="name"
           type="text"
-          value={newPlantSubmission.scientific_name}
+          value={newPlantSubmission.name}
           onChange={handleChange}
         />
       </label>
-      <label>
-        Picture:
-        <input 
-          name="img"
-          id="img"
-          type="text"
-          value={newPlantSubmission.img}
-          onChange={handleChange}
-        />
-      </label>
+      <div className="dropzone">
+        <Dropzone onDrop={handleFileUpload}>
+          {({getRootProps, getInputProps}) => (
+            <section>
+              <div {...getRootProps()}>
+                <input {...getInputProps()} />
+                <p>Drag image here, or click to select files</p>
+              </div>
+            </section>
+          )}
+          </Dropzone>
+          <aside>
+            <ul>{files}</ul>
+           </aside>
+        </div>  
       <label>
         Family:
         <input 

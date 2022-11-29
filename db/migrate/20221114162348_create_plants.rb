@@ -1,7 +1,7 @@
 class CreatePlants < ActiveRecord::Migration[5.2]
   def change
     create_table :plants do |t|
-      t.string :scientific_name , null: false
+      t.string :name , null: false
       t.string :img
       t.string :family
       t.string :common_name 

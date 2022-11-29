@@ -22,7 +22,7 @@ ActiveRecord::Schema.define(version: 2022_11_17_191112) do
   end
 
   create_table "plants", force: :cascade do |t|
-    t.string "scientific_name", null: false
+    t.string "name", null: false
     t.string "img"
     t.string "family"
     t.string "common_name"

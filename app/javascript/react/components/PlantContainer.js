@@ -2,15 +2,15 @@ import React, { Fragment, useState, useEffect } from "react";
 import PlantTile from "./PlantTile";
 import NewPlantForm from "./NewPlantForm";
 
-const PlantContainer = ({ plants, postUpdate, setNewPlantSubmission, newPlantSubmission }) => {
+const PlantContainer = ({ plants, setNewPlantSubmission, newPlantSubmission, handleSubmission }) => {
 
   const plantsList = plants.map((plant) => {
     return (
       <PlantTile
       key={plant.id}
       id={plant.id}
-      scientific_name={plant.scientific_name}
-      img={plant.img}
+      name={plant.name}
+      img={plant.img.url}
       family={plant.family}
       genus={plant.genus}
       category={plant.category.title}
@@ -22,7 +22,7 @@ const PlantContainer = ({ plants, postUpdate, setNewPlantSubmission, newPlantSub
     <Fragment>
       <div>{plantsList}</div>
       <NewPlantForm 
-        postUpdate={postUpdate}
+        handleSubmission={handleSubmission}
         newPlantSubmission={newPlantSubmission}
         setNewPlantSubmission={setNewPlantSubmission}
         />

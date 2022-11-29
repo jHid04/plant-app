@@ -6,7 +6,7 @@ const UserShowContainer = (props) => {
   const [user, setUser] = useState({})
   const [plants, setPlants] = useState([])
   const [newPlantSubmission, setNewPlantSubmission] = useState({
-    scientific_name: "",
+    name: "",
     img: "",
     family: "",
     category: ""
@@ -35,33 +35,38 @@ const UserShowContainer = (props) => {
     fetchUser()
   }, [])
 
-  const postUpdate = async (formPayload) => {
+
+  const handleSubmission = async (event) => {
+    event.preventDefault()
+    let body = new FormData()
+    body.append("name", newPlantSubmission.name)
+    body.append("img", newPlantSubmission.img)
+    body.append("family", newPlantSubmission.family)
+    body.append("category", newPlantSubmission.category)
+    
     try {
       const response = await fetch(`/api/v1/plants`, {
-        credentials: "same-origin",
         method: "POST",
-        body: JSON.stringify(formPayload),
-        headers: {
-          "Accept": "application/json",
-          "Content-type": "application/json"
-        }
+        credentials: "same-origin",
+        body: body
       })
       if (!response.ok) {
-        const errorMessage = `${response.status} - ${response.statusText}`
-        const error = new Error(errorMessage)
-        throw (error)
-      } else {
-        const responseBody = await response.json()
-        setPlants([...plants, responseBody.plant])
-        setNewPlantSubmission({
-          scientific_name: "",
-          img: "",
-          family: "",
-          category: ""
-        })
+        const errorMessage = `${response.status} (${response.statusText})`
+        throw new Error(errorMessage)
       }
-    } catch (err) {
-      console.log(`Error! ${err}`)
+      const newPlant = await response.json()
+      setPlants([
+        ...plants,
+        newPlant.plant
+      ])
+      setNewPlantSubmission({
+        name: "",
+        img: "",
+        family: "",
+        category: ""
+      })
+    } catch (error) {
+      console.error(`Error in Fetch: ${error.message}`)
     }
   }
 
@@ -74,10 +79,10 @@ const UserShowContainer = (props) => {
       </div>
       <div className="cell small-4 large-offset-2 plant-info">
         <PlantContainer
-          postUpdate={postUpdate}
           newPlantSubmission={newPlantSubmission}
           setNewPlantSubmission={setNewPlantSubmission}
           plants={plants}
+          handleSubmission={handleSubmission}
         />
       </div>
     </div>
