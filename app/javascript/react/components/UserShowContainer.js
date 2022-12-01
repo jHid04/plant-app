@@ -88,12 +88,20 @@ const UserShowContainer = (props) => {
     }
     }
 
+  const date = new Date(user.created_at)
+  const month = date.toLocaleString('default', {
+    month: 'short',
+  })
+  const year = date.getFullYear()
+
   return (
     <div className="grid-x grid-margin-x">
       <div className="cell small-4">
         <p>Name: {user.first_name} {user.last_name}</p>
+        <p>Member Since: {month} {year}</p>
           <h3>About Me</h3>
           <li>{user.about}</li>
+          <a href="/users/edit">Edit Information</a>
       </div>
       <div className="cell small-4 large-offset-2 plant-info">
         <PlantContainer
