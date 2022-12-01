@@ -11,6 +11,7 @@ Rails.application.routes.draw do
       resources :users, only: [:show] 
       resources :plants, only: [:create]
       resource :category, only: [:show]
+      get'/current-user', to: "current_user#index"
     end
   end
 end
