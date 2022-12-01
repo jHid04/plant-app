@@ -13,6 +13,27 @@ const UserShowContainer = (props) => {
     family: "",
     category: ""
   })
+  const [currentUser, setCurrentUser] = useState({})
+
+  const getCurrentUser = async () => {
+    try {
+      const response = await fetch('/api/v1/current-user')
+      if (!response.ok) {
+        const errorMessage = `${response.status} ${response.statusText}`
+        const error = new Error(errorMessage)
+        throw (error)
+      } else {
+        const parsedUser = await response.json()
+        setCurrentUser(parsedUser.user)
+      }
+    } catch (err) {
+      console.log(`Error! - ${err}`)
+    }
+  }
+  
+  useEffect(() => {
+    getCurrentUser()
+  }, [])
 
   const fetchUser = async () => {
     try {
@@ -94,6 +115,12 @@ const UserShowContainer = (props) => {
   })
   const year = date.getFullYear()
 
+  let showEdit = null
+
+  if (currentUser.id === user.id){
+    showEdit = <a href="/users/edit">Edit Information</a>
+  }
+
   return (
     <div className="grid-x grid-margin-x">
       <div className="cell small-4">
@@ -101,7 +128,7 @@ const UserShowContainer = (props) => {
         <p>Member Since: {month} {year}</p>
           <h3>About Me</h3>
           <li>{user.about}</li>
-          <a href="/users/edit">Edit Information</a>
+          {showEdit}
       </div>
       <div className="cell small-4 large-offset-2 plant-info">
         <PlantContainer
