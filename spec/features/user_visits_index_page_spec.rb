@@ -8,8 +8,8 @@ feature 'user visits index page' do
     
     visit plants_path
     
-    expect(page).to have_content("Spider Plant")
-    expect(page).to have_content("Asparagaceae")
+    expect(page).to have_content(Plant.first.name)
+    expect(page).to have_content(Plant.first.family)
     expect(page).to have_content(Plant.first.user.username)
   end
 end
